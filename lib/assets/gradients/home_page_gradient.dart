@@ -9,9 +9,10 @@ const LinearGradient homePageGradient = LinearGradient(
   stops: [0.0, 0.55],
   colors: [
     // Colors are easy thanks to Flutter's Colors class.
-    Color.fromARGB(195, 24, 28, 80),
+    Color(0xFF4D4F78),
     Color(0xFF040725),
   ],
 );
 
 //Color.fromARGB(197, 106, 72, 103),
+    // Color.fromARGB(195, 24, 28, 80),
