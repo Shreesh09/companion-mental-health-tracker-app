@@ -28,7 +28,6 @@ class TimerService {
     if (seconds == null || seconds == 0) {
       throw TimerNotSetException();
     } else {
-      print("started");
       countdownTimer = Timer.periodic(
         duration,
         (_) {
