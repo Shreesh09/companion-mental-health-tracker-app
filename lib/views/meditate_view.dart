@@ -1,7 +1,7 @@
 import 'package:companionapp/assets/colors/app_colors.dart';
-import 'package:companionapp/assets/widgets/timer_text_field.dart';
+import 'package:companionapp/assets/widgets/timer_text_field_widget.dart';
 import 'package:companionapp/assets/widgets/timer_widget.dart';
-import 'package:companionapp/assets/widgets/triangle.dart';
+import 'package:companionapp/assets/widgets/triangle_widget.dart';
 import 'package:companionapp/assets/widgets/white_text_widget.dart';
 import 'package:companionapp/services/Timer/Bloc/TimerBloc/timer_bloc.dart';
 import 'package:companionapp/services/Timer/Bloc/TimerBloc/timer_events.dart';
@@ -169,25 +169,28 @@ class _MeditateViewState extends State<MeditateView> {
                       children: [
                         InkWell(
                           onTap: () {
-                            if (_textEditingControllerMinutes.text == "") {
-                              time = 0;
+                            if (state is TimerStateRunning) {
                             } else {
-                              time = int.parse(
-                                      _textEditingControllerMinutes.text) *
-                                  60;
+                              if (_textEditingControllerMinutes.text == "") {
+                                time = 0;
+                              } else {
+                                time = int.parse(
+                                        _textEditingControllerMinutes.text) *
+                                    60;
+                              }
+                              if (_textEditingControllerSeconds.text != "") {
+                                time = time +
+                                    int.parse(
+                                        _textEditingControllerSeconds.text);
+                              }
+                              rate = 1.0 / time;
+                              context
+                                  .read<TimerBloc>()
+                                  .add(TimerEventSet(duration: time));
+                              context
+                                  .read<TimerBloc>()
+                                  .add(const TimerEventStart());
                             }
-                            if (_textEditingControllerSeconds.text != "") {
-                              time = time +
-                                  int.parse(_textEditingControllerSeconds.text);
-                            }
-                            print("time: $time");
-                            rate = 1.0 / time;
-                            context
-                                .read<TimerBloc>()
-                                .add(TimerEventSet(duration: time));
-                            context
-                                .read<TimerBloc>()
-                                .add(const TimerEventStart());
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -200,7 +203,7 @@ class _MeditateViewState extends State<MeditateView> {
                                     child: Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                                  child: triangle(40, timerButtonsColor, 90),
+                                  child: Triangle(40, timerButtonsColor, 90),
                                 ))),
                           ),
                         ),

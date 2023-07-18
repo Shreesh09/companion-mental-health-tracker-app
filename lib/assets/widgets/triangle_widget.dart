@@ -44,7 +44,7 @@ class TrianglePainter extends CustomPainter {
   }
 }
 
-Widget triangle(double sideSize, Color color, double angle) {
+Widget Triangle(double sideSize, Color color, double angle) {
   return Transform.rotate(
     angle: angle * pi / 180,
     child: CustomPaint(

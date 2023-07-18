@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../colors/app_colors.dart';
 
-class BasicWidgetBox extends StatelessWidget {
+class BasicBox extends StatelessWidget {
   final Widget content;
   final double? width;
   final double? height;
 
-  const BasicWidgetBox(
-      {super.key, required this.content, this.width, this.height});
+  const BasicBox({super.key, required this.content, this.width, this.height});
 
   @override
   Widget build(BuildContext context) {

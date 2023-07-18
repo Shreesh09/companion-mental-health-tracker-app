@@ -27,13 +27,10 @@ class TimerWidget extends StatelessWidget {
                 fontSize: 70,
                 fontWeight: FontWeight.bold,
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 12, 25),
-                child: WhiteText(
-                  ":",
-                  fontSize: 70,
-                  fontWeight: FontWeight.bold,
-                ),
+              const WhiteText(
+                ":",
+                fontSize: 70,
+                fontWeight: FontWeight.bold,
               ),
               WhiteText(
                 seconds,
