@@ -99,36 +99,50 @@ class _HomePageViewState extends State<HomePageView> {
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 100,
-                    child: Center(
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.face_2,
-                              size: 70,
-                              color: Colors.white,
-                            )),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.face_4,
-                              size: 70,
-                              color: Colors.white,
-                            )),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.face_5,
-                              size: 70,
-                              color: Colors.white,
-                            )),
-                      ],
-                    )),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(moodTrackerViewRoute);
+                    },
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: 100,
+                      child: Center(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(moodTrackerViewRoute);
+                              },
+                              icon: const Icon(
+                                Icons.face_2,
+                                size: 70,
+                                color: Colors.white,
+                              )),
+                          IconButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(moodTrackerViewRoute);
+                              },
+                              icon: const Icon(
+                                Icons.face_4,
+                                size: 70,
+                                color: Colors.white,
+                              )),
+                          IconButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(moodTrackerViewRoute);
+                              },
+                              icon: const Icon(
+                                Icons.face_5,
+                                size: 70,
+                                color: Colors.white,
+                              )),
+                        ],
+                      )),
+                    ),
                   ),
                 ],
               ),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../../constants/routes.dart';
 import '../../services/auth/auth_service.dart';
-import '../../services/cloud/cloud_note.dart';
 import '../../services/cloud/firbase_cloud_storage.dart';
 import 'notes_list_view.dart';
 
@@ -53,7 +52,9 @@ class _JournalViewState extends State<JournalView> {
               case ConnectionState.waiting:
               case ConnectionState.active:
                 if (snapshot.hasData) {
-                  final allNotes = snapshot.data as Iterable<CloudNote>;
+                  final allNotes = snapshot.data!.toList();
+                  allNotes.sort((a, b) => b.date.compareTo(a.date));
+                  //if()
                   return NotesListView(
                     notes: allNotes,
                     onDeleteNote: (note) async {

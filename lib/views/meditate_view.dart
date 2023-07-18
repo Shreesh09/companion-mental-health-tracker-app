@@ -6,6 +6,7 @@ import 'package:companionapp/assets/widgets/white_text_widget.dart';
 import 'package:companionapp/services/Timer/Bloc/TimerBloc/timer_bloc.dart';
 import 'package:companionapp/services/Timer/Bloc/TimerBloc/timer_events.dart';
 import 'package:companionapp/services/Timer/Bloc/TimerBloc/timer_states.dart';
+import 'package:companionapp/utilities/dialogs/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -174,14 +175,26 @@ class _MeditateViewState extends State<MeditateView> {
                               if (_textEditingControllerMinutes.text == "") {
                                 time = 0;
                               } else {
-                                time = int.parse(
-                                        _textEditingControllerMinutes.text) *
-                                    60;
+                                final integer = int.tryParse(
+                                    _textEditingControllerMinutes.text);
+                                if (integer == null) {
+                                  time = 0;
+                                  showErrorDialog(context, "Invalid Input");
+                                  _textEditingControllerMinutes.clear();
+                                } else {
+                                  time = integer * 60;
+                                }
                               }
                               if (_textEditingControllerSeconds.text != "") {
-                                time = time +
-                                    int.parse(
-                                        _textEditingControllerSeconds.text);
+                                final integer = int.tryParse(
+                                    _textEditingControllerSeconds.text);
+                                if (integer == null) {
+                                  time = 0;
+                                  showErrorDialog(context, "Invalid Input");
+                                  _textEditingControllerSeconds.clear();
+                                } else {
+                                  time = time + integer;
+                                }
                               }
                               rate = 1.0 / time;
                               context

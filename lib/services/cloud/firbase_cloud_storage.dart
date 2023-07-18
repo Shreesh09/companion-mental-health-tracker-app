@@ -14,15 +14,20 @@ class FirebaseCloudStorage {
   FirebaseCloudStorage._sharedInstance();
 
   Future<CloudNote> createNewNote({required String ownerUserId}) async {
+    DateTime now = DateTime.now();
+    DateTime date =
+        DateTime(now.year, now.month, now.day, now.hour, now.minute);
     final document = await notes.add({
       ownerUserIdFieldName: ownerUserId,
       textFieldName: '',
+      dateFieldName: date.toString().substring(0, 16),
     });
     final fetchedNote = await document.get();
     return CloudNote(
       documentId: fetchedNote.id,
       ownerUserId: ownerUserId,
       text: '',
+      date: date.toString().substring(0, 16),
     );
   }
 
@@ -33,6 +38,7 @@ class FirebaseCloudStorage {
             ownerUserIdFieldName,
             isEqualTo: ownerUserId,
           )
+          .orderBy(dateFieldName)
           .get()
           .then(
               (value) => value.docs.map((doc) => CloudNote.fromSnapShot(doc)));

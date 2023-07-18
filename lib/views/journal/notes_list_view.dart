@@ -6,7 +6,7 @@ import '../../utilities/dialogs/delete_dialog.dart';
 typedef NoteCallback = void Function(CloudNote note);
 
 class NotesListView extends StatelessWidget {
-  final Iterable<CloudNote> notes;
+  final List<CloudNote> notes;
   final NoteCallback onDeleteNote;
   final NoteCallback onTap;
   const NotesListView({
@@ -26,26 +26,35 @@ class NotesListView extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: BasicBox(
             height: 100,
-            content: ListTile(
-              onTap: () {
-                onTap(note);
-              },
-              title: Text(
-                style: const TextStyle(color: Colors.white, fontSize: 24),
-                note.text,
-                maxLines: 1,
-                softWrap: true,
-                overflow: TextOverflow.ellipsis,
-              ),
-              trailing: IconButton(
-                onPressed: () async {
-                  final shouldDelete = await showDeleteDialog(context);
-                  if (shouldDelete == true) {
-                    onDeleteNote(note);
-                  }
-                },
-                icon: const Icon(Icons.delete),
-              ),
+            content: Column(
+              children: [
+                Text(note.date,
+                    style: const TextStyle(
+                        color: Colors.white38,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold)),
+                ListTile(
+                  onTap: () {
+                    onTap(note);
+                  },
+                  title: Text(
+                    style: const TextStyle(color: Colors.white, fontSize: 24),
+                    note.text,
+                    maxLines: 1,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  trailing: IconButton(
+                    onPressed: () async {
+                      final shouldDelete = await showDeleteDialog(context);
+                      if (shouldDelete == true) {
+                        onDeleteNote(note);
+                      }
+                    },
+                    icon: const Icon(Icons.delete),
+                  ),
+                ),
+              ],
             ),
           ),
         );
