@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:companionapp/services/auth/auth_exceptions.dart';
 import 'package:companionapp/services/auth/bloc/auth_bloc.dart';
@@ -47,6 +48,9 @@ class _LoginViewState extends State<LoginView> {
       },
       child: Scaffold(
         appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.black,
+          ),
           title: const Text('Login'),
         ),
         body: SizedBox(

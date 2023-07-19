@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:companionapp/services/auth/bloc/auth_bloc.dart';
 import 'package:companionapp/services/auth/bloc/auth_event.dart';
@@ -15,6 +16,9 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.black,
+        ),
         title: const Text('Verify your E-mail'),
       ),
       body: Column(children: [

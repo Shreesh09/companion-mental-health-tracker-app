@@ -2,8 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:companionapp/services/mood_tracker_db/cloud_storage_mood_constants.dart';
 import 'package:companionapp/services/mood_tracker_db/mood_image_contants.dart';
 
-const moodList = [smile, sad, angry];
-const activityList = [family, friends, excercise];
+const moodList = [happy, neutral, sad, angry];
+const activityList = [
+  family,
+  friends,
+  excercise,
+  clean,
+  date,
+  eat,
+  gaming,
+  movies,
+  reading,
+  relax,
+  shop,
+  sports
+];
 
 class CloudMood {
   final String documentId;

@@ -1,6 +1,16 @@
-const String smile = "assets/smile.png";
+const String happy = "assets/happy.png";
+const String neutral = "assets/neutral.png";
 const String sad = "assets/sad.png";
 const String angry = "assets/angry.png";
 const String friends = "assets/friends.png";
 const String family = "assets/family.png";
 const String excercise = "assets/excercise.png";
+const String clean = "assets/clean.png";
+const String date = "assets/date.png";
+const String eat = "assets/eat.png";
+const String movies = "assets/movies.png";
+const String reading = "assets/reading.png";
+const String relax = "assets/relax.png";
+const String shop = "assets/shop.png";
+const String sports = "assets/sports.png";
+const String gaming = "assets/gaming.png";

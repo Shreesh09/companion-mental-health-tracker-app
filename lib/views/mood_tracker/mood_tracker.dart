@@ -10,6 +10,7 @@ import 'package:companionapp/services/mood_tracker_db/cloud_storage_mood_excepti
 import 'package:companionapp/services/mood_tracker_db/firbase_cloud_storage_mood.dart';
 import 'package:companionapp/utilities/dialogs/error_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../assets/gradients/home_page_gradient.dart';
@@ -65,8 +66,11 @@ class _MoodTrackerState extends State<MoodTracker> {
             return Container(
               decoration: const BoxDecoration(gradient: homePageGradient),
               child: Scaffold(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Colors.black45,
                 appBar: AppBar(
+                  systemOverlayStyle: const SystemUiOverlayStyle(
+                    statusBarColor: Colors.black,
+                  ),
                   title: const WhiteText(
                     "Track your Mood",
                     fontSize: 24,
@@ -101,6 +105,9 @@ class _MoodTrackerState extends State<MoodTracker> {
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                     ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     SizedBox(
                       height: 150,
                       child: ListView.builder(
@@ -121,18 +128,23 @@ class _MoodTrackerState extends State<MoodTracker> {
                                   selectedMood = moodList[index];
                                 });
                               },
-                              child: Column(
-                                children: [
-                                  Container(
-                                      height: 120,
-                                      color: moodColor,
-                                      child: Image(
-                                          image: AssetImage(moodList[index]))),
-                                  WhiteText(
-                                    extractName(moodList[index]),
-                                    fontSize: 20,
-                                  ),
-                                ],
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                        height: 110,
+                                        color: moodColor,
+                                        child: Image(
+                                            image:
+                                                AssetImage(moodList[index]))),
+                                    WhiteText(
+                                      extractName(moodList[index]),
+                                      fontSize: 20,
+                                    ),
+                                  ],
+                                ),
                               ));
                         },
                       ),

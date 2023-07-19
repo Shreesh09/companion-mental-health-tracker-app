@@ -6,6 +6,7 @@ import 'package:companionapp/views/mood_tracker/line_chart.dart';
 import 'package:companionapp/views/mood_tracker/radial_chart.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../constants/routes.dart';
 import '../../services/auth/auth_service.dart';
@@ -35,6 +36,9 @@ class _MoodsViewState extends State<MoodsView> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.black,
+          ),
           backgroundColor: appBarColor,
           title: const Text(
             "Logs",

@@ -1,6 +1,7 @@
 import 'package:companionapp/assets/colors/app_colors.dart';
 import 'package:companionapp/assets/gradients/home_page_gradient.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../constants/routes.dart';
 import '../../services/auth/auth_service.dart';
@@ -29,8 +30,11 @@ class _JournalViewState extends State<JournalView> {
     return Container(
       decoration: const BoxDecoration(gradient: homePageGradient),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black45,
         appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.black,
+          ),
           backgroundColor: appBarColor,
           title: const Text(
             "Journal",

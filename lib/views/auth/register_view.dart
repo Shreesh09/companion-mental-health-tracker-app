@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:companionapp/services/auth/auth_exceptions.dart';
 import 'package:companionapp/services/auth/bloc/auth_bloc.dart';
@@ -47,7 +48,11 @@ class _RegisterViewState extends State<RegisterView> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('Register')),
+        appBar: AppBar(
+            systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: Colors.black,
+            ),
+            title: const Text('Register')),
         body: SizedBox(
           height: 300,
           width: 700,

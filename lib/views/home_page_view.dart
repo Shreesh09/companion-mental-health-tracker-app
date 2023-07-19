@@ -84,9 +84,10 @@ class _HomePageViewState extends State<HomePageView> {
                 ),
               ),
             ),
-            BasicBox(
-              width: MediaQuery.of(context).size.width * 0.9,
-              content: const Center(
+            const BasicBox(
+              width: 440,
+              //height: 200,
+              content: Center(
                   child: Image(
                 image: AssetImage(
                   'assets/inspirational.png',
@@ -114,36 +115,30 @@ class _HomePageViewState extends State<HomePageView> {
                           child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          IconButton(
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(moodTrackerViewRoute);
-                              },
-                              icon: const Icon(
-                                Icons.face_2,
-                                size: 70,
-                                color: Colors.white,
-                              )),
-                          IconButton(
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(moodTrackerViewRoute);
-                              },
-                              icon: const Icon(
-                                Icons.face_4,
-                                size: 70,
-                                color: Colors.white,
-                              )),
-                          IconButton(
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(moodTrackerViewRoute);
-                              },
-                              icon: const Icon(
-                                Icons.face_5,
-                                size: 70,
-                                color: Colors.white,
-                              )),
+                          const SizedBox(
+                            height: 70,
+                            width: 70,
+                            child: Image(
+                              image: AssetImage("assets/happy.png"),
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 70,
+                            width: 70,
+                            child: Image(
+                              image: AssetImage("assets/neutral.png"),
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 70,
+                            width: 70,
+                            child: Image(
+                              image: AssetImage("assets/sad.png"),
+                              color: Colors.white,
+                            ),
+                          ),
                         ],
                       )),
                     ),
@@ -163,16 +158,15 @@ class _HomePageViewState extends State<HomePageView> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
-                      BasicBox(
-                        width: 200,
-                        height: 200,
-                        content: IconButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamed(journalViewRoute);
-                            },
-                            icon: const Icon(
-                              Icons.book_outlined,
-                              size: 100,
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(journalViewRoute);
+                        },
+                        child: const BasicBox(
+                            width: 200,
+                            height: 200,
+                            content: Image(
+                              image: AssetImage("assets/journal.png"),
                               color: Colors.white,
                             )),
                       )
@@ -185,17 +179,15 @@ class _HomePageViewState extends State<HomePageView> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
-                      BasicBox(
-                        width: 200,
-                        height: 200,
-                        content: IconButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(meditateViewRoute);
-                            },
-                            icon: const Icon(
-                              Icons.bed_rounded,
-                              size: 100,
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(meditateViewRoute);
+                        },
+                        child: const BasicBox(
+                            width: 200,
+                            height: 200,
+                            content: Image(
+                              image: AssetImage("assets/meditation.png"),
                               color: Colors.white,
                             )),
                       )

@@ -3,6 +3,7 @@ import 'package:companionapp/services/auth/auth_service.dart';
 import 'package:companionapp/services/cloud/cloud_note.dart';
 import 'package:companionapp/services/cloud/firbase_cloud_storage.dart';
 import 'package:companionapp/utilities/generics/get_arguments.dart';
+import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../utilities/dialogs/cannot_share_empty_note_dialog.dart';
@@ -92,6 +93,9 @@ class _NewNoteViewState extends State<NewNoteView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.black,
+        ),
         title: const Text('New Note'),
         actions: [
           IconButton(

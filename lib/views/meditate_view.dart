@@ -54,7 +54,7 @@ class _MeditateViewState extends State<MeditateView> {
           return Container(
             decoration: const BoxDecoration(gradient: homePageGradient),
             child: Scaffold(
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.black45,
               appBar: AppBar(
                 systemOverlayStyle: const SystemUiOverlayStyle(
                   statusBarColor: Colors.black,
