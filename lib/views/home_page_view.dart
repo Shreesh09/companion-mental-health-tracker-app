@@ -18,6 +18,10 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
+  final String salutation = "Good " +
+      (DateTime.now().hour < 12 ? "Morning" : "Afternoon") +
+      ", User!";
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -71,22 +75,22 @@ class _HomePageViewState extends State<HomePageView> {
             )),
         body: SingleChildScrollView(
           child: Column(children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(0, 30, 0, 15),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 30, 0, 15),
               child: Center(
                 child: WhiteText(
-                  "Good Morning, User",
+                  salutation,
                   fontSize: 32,
                 ),
               ),
             ),
             BasicBox(
               width: MediaQuery.of(context).size.width * 0.9,
-              height: 200,
               content: const Center(
-                  child: WhiteText(
-                "Lorem Ipsum",
-                fontSize: 30,
+                  child: Image(
+                image: AssetImage(
+                  'assets/inspirational.png',
+                ),
               )),
             ),
             Padding(

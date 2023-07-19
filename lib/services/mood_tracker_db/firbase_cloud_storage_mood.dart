@@ -52,7 +52,7 @@ class FirebaseMoodCloudStorage {
     }
   }
 
-  Stream<Iterable<CloudMood>> allNotes({required String ownerUserId}) =>
+  Stream<Iterable<CloudMood>> allMoods({required String ownerUserId}) =>
       moods.snapshots().map((event) => event.docs
           .map((doc) => CloudMood.fromSnapShot(doc))
           .where((note) => note.ownerUserId == ownerUserId));

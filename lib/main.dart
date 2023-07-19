@@ -11,7 +11,8 @@ import 'package:companionapp/views/auth/login_view.dart';
 import 'package:companionapp/views/meditate_view.dart';
 import 'package:companionapp/views/auth/register_view.dart';
 import 'package:companionapp/views/auth/verify_email_view.dart';
-import 'package:companionapp/views/mood_tracker.dart';
+import 'package:companionapp/views/mood_tracker/mood_tracker.dart';
+import 'package:companionapp/views/mood_tracker/moods_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,7 +27,7 @@ void main() {
       ),
       home: BlocProvider<AuthBloc>(
         create: (context) => AuthBloc(FirebaseAuthProvider()),
-        child: AppOpenView(),
+        child: const AppOpenView(),
       ),
       routes: {
         homePageRoute: (context) => const HomePageView(),
@@ -34,6 +35,7 @@ void main() {
         journalViewRoute: (context) => const JournalView(),
         createUpdateNoteRoute: (context) => const NewNoteView(),
         moodTrackerViewRoute: (context) => const MoodTracker(),
+        moodsViewRoute: (context) => const MoodsView(),
       }));
 }
 
