@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 abstract class TimerEvent {
   const TimerEvent();
 }
@@ -7,7 +9,8 @@ class TimerEventStart extends TimerEvent {
 }
 
 class TimerEventStop extends TimerEvent {
-  const TimerEventStop() : super();
+  final BuildContext? context;
+  const TimerEventStop({this.context}) : super();
 }
 
 class TimerEventSet extends TimerEvent {

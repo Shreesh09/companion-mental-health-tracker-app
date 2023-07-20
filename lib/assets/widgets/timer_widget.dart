@@ -18,7 +18,7 @@ class TimerWidget extends StatelessWidget {
       children: [
         SizedBox(
           width: MediaQuery.sizeOf(context).width * .80,
-          height: 200,
+          height: 150,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

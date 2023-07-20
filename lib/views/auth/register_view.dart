@@ -1,3 +1,6 @@
+import 'package:companionapp/assets/colors/app_colors.dart';
+import 'package:companionapp/assets/gradients/home_page_gradient.dart';
+import 'package:companionapp/assets/widgets/white_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,58 +50,84 @@ class _RegisterViewState extends State<RegisterView> {
           }
         }
       },
-      child: Scaffold(
-        appBar: AppBar(
-            systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.black,
-            ),
-            title: const Text('Register')),
-        body: SizedBox(
-          height: 300,
-          width: 700,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                TextField(
-                  controller: _email,
-                  enableSuggestions: true,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                      hintText: 'Enter your e-mail here',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)))),
-                ),
-                TextField(
-                  controller: _password,
-                  obscureText: true,
-                  enableSuggestions: true,
-                  decoration: const InputDecoration(
-                      hintText: 'Enter your password here',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)))),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                        onPressed: () async {
-                          final email = _email.text;
-                          final password = _password.text;
-                          context.read<AuthBloc>().add(AuthEventRegister(
-                                email,
-                                password,
-                              ));
-                        },
-                        child: const Text("Register")),
-                    TextButton(
-                        onPressed: () {
-                          context.read<AuthBloc>().add(const AuthEventLogOut());
-                        },
-                        child: const Text('Login here!')),
-                  ],
-                )
-              ],
+      child: Container(
+        decoration: const BoxDecoration(gradient: homePageGradient),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+              backgroundColor: appBarColor,
+              iconTheme: const IconThemeData(color: Colors.white),
+              systemOverlayStyle: const SystemUiOverlayStyle(
+                statusBarColor: Colors.black,
+              ),
+              title: const WhiteText('Companion')),
+          body: SizedBox(
+            height: 400,
+            width: 700,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  const Center(
+                      child: WhiteText(
+                    "Register",
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  )),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  TextField(
+                    cursorColor: Colors.white,
+                    style: const TextStyle(color: Colors.white),
+                    controller: _email,
+                    obscureText: false,
+                    enableSuggestions: true,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                        hintText: 'Enter your e-mail here',
+                        hintStyle: TextStyle(color: Colors.white54),
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)))),
+                  ),
+                  TextField(
+                    cursorColor: Colors.white,
+                    style: const TextStyle(color: Colors.white),
+                    controller: _password,
+                    obscureText: true,
+                    enableSuggestions: true,
+                    decoration: const InputDecoration(
+                        hintText: 'Enter your password here',
+                        hintStyle: TextStyle(color: Colors.white54),
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)))),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                          onPressed: () async {
+                            final email = _email.text;
+                            final password = _password.text;
+                            context.read<AuthBloc>().add(AuthEventRegister(
+                                  email,
+                                  password,
+                                ));
+                          },
+                          child: const WhiteText("Register")),
+                      TextButton(
+                          onPressed: () {
+                            context
+                                .read<AuthBloc>()
+                                .add(const AuthEventLogOut());
+                          },
+                          child: const WhiteText('Login here!')),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

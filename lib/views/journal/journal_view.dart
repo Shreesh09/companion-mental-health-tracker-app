@@ -32,6 +32,7 @@ class _JournalViewState extends State<JournalView> {
       child: Scaffold(
         backgroundColor: Colors.black45,
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
           systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: Colors.black,
           ),

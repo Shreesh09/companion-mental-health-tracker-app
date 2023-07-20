@@ -8,7 +8,7 @@ import 'package:companionapp/views/home_page_view.dart';
 import 'package:companionapp/views/journal/create_update_note_view.dart';
 import 'package:companionapp/views/journal/journal_view.dart';
 import 'package:companionapp/views/auth/login_view.dart';
-import 'package:companionapp/views/meditate_view.dart';
+import 'package:companionapp/views/meditaion/meditate_view.dart';
 import 'package:companionapp/views/auth/register_view.dart';
 import 'package:companionapp/views/auth/verify_email_view.dart';
 import 'package:companionapp/views/mood_tracker/mood_tracker.dart';
@@ -22,7 +22,6 @@ void main() {
   runApp(MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
         useMaterial3: true,
       ),
       home: BlocProvider<AuthBloc>(

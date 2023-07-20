@@ -7,11 +7,12 @@ import 'package:companionapp/services/Timer/Bloc/TimerBloc/timer_bloc.dart';
 import 'package:companionapp/services/Timer/Bloc/TimerBloc/timer_events.dart';
 import 'package:companionapp/services/Timer/Bloc/TimerBloc/timer_states.dart';
 import 'package:companionapp/utilities/dialogs/error_dialog.dart';
+import 'package:companionapp/views/meditaion/meditaion_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../assets/gradients/home_page_gradient.dart';
-import '../services/Timer/timer_service.dart';
+import '../../assets/gradients/home_page_gradient.dart';
+import '../../services/Timer/timer_service.dart';
 
 class MeditateView extends StatefulWidget {
   const MeditateView({super.key});
@@ -56,6 +57,7 @@ class _MeditateViewState extends State<MeditateView> {
             child: Scaffold(
               backgroundColor: Colors.black45,
               appBar: AppBar(
+                iconTheme: const IconThemeData(color: Colors.white),
                 systemOverlayStyle: const SystemUiOverlayStyle(
                   statusBarColor: Colors.black,
                 ),
@@ -67,7 +69,18 @@ class _MeditateViewState extends State<MeditateView> {
                 child: Center(
                   child: Column(children: [
                     const SizedBox(
-                      height: 150,
+                      height: 15,
+                    ),
+                    SizedBox(
+                      height: 250,
+                      child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Container(
+                              color: Colors.white10,
+                              child: const MediataionText())),
+                    ),
+                    const SizedBox(
+                      height: 50,
                     ),
                     BlocBuilder<TimerBloc, TimerState>(
                       builder: (context, state) {
@@ -77,7 +90,7 @@ class _MeditateViewState extends State<MeditateView> {
                             children: [
                               SizedBox(
                                 width: MediaQuery.sizeOf(context).width * .80,
-                                height: 200,
+                                height: 150,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -130,9 +143,8 @@ class _MeditateViewState extends State<MeditateView> {
                                       timerProgress = timerProgress - rate;
                                       print(timerProgress);
                                       if (time == 0) {
-                                        context
-                                            .read<TimerBloc>()
-                                            .add(const TimerEventStop());
+                                        context.read<TimerBloc>().add(
+                                            TimerEventStop(context: context));
                                         timerProgress = 1.0;
                                       }
                                       return TimerWidget(
@@ -225,9 +237,7 @@ class _MeditateViewState extends State<MeditateView> {
                         ),
                         InkWell(
                           onTap: () {
-                            context
-                                .read<TimerBloc>()
-                                .add(const TimerEventStop());
+                            context.read<TimerBloc>().add(TimerEventStop());
                             timerProgress = 1.0;
                           },
                           child: Container(

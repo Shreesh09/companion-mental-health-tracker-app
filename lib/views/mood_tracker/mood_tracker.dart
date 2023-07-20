@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../assets/gradients/home_page_gradient.dart';
+import '../../helpers/extract_name_asset.dart';
 import '../../services/auth/auth_service.dart';
 
 enum MenuAction { viewLogs }
@@ -30,12 +31,6 @@ class _MoodTrackerState extends State<MoodTracker> {
   late final FirebaseMoodCloudStorage _provider;
   String? selectedMood, selectedActivity;
   Color moodColor = Colors.transparent, activityColor = Colors.transparent;
-
-  String extractName(String path) {
-    path = path.substring(7);
-    path = path.substring(0, path.length - 4);
-    return path;
-  }
 
   @override
   void initState() {
@@ -68,6 +63,7 @@ class _MoodTrackerState extends State<MoodTracker> {
               child: Scaffold(
                 backgroundColor: Colors.black45,
                 appBar: AppBar(
+                  iconTheme: const IconThemeData(color: Colors.white),
                   systemOverlayStyle: const SystemUiOverlayStyle(
                     statusBarColor: Colors.black,
                   ),

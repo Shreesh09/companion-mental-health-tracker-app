@@ -33,23 +33,38 @@ class MoodsListView extends StatelessWidget {
                           color: Colors.white38,
                           fontSize: 18,
                           fontWeight: FontWeight.bold)),
-                  ListTile(
-                    title: Text(
-                      style: const TextStyle(color: Colors.white, fontSize: 24),
-                      mood.mood,
-                      maxLines: 1,
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    trailing: IconButton(
-                      onPressed: () async {
-                        final shouldDelete = await showDeleteDialog(context);
-                        if (shouldDelete == true) {
-                          onDeleteMood(mood);
-                        }
-                      },
-                      icon: const Icon(Icons.delete),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                              height: 60,
+                              child: Image(image: AssetImage(mood.mood))),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          SizedBox(
+                              height: 60,
+                              child: Image(image: AssetImage(mood.activity))),
+                        ],
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          final shouldDelete = await showDeleteDialog(context);
+                          if (shouldDelete == true) {
+                            onDeleteMood(mood);
+                          }
+                        },
+                        icon: const Icon(
+                          Icons.delete,
+                          color: Colors.white38,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

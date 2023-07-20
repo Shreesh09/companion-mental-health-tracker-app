@@ -164,16 +164,16 @@ class _MoodRadialChartState extends State<MoodRadialChart> {
                   switch (index) {
                     case 0:
                       return RadarChartTitle(
-                        text: 'Mobile or Tablet',
+                        text: 'Happy',
                         angle: usedAngle,
                       );
                     case 2:
                       return RadarChartTitle(
-                        text: 'Desktop',
+                        text: 'Sad',
                         angle: usedAngle,
                       );
                     case 1:
-                      return RadarChartTitle(text: 'TV', angle: usedAngle);
+                      return RadarChartTitle(text: 'Angry', angle: usedAngle);
                     default:
                       return const RadarChartTitle(text: '');
                   }
@@ -220,7 +220,7 @@ class _MoodRadialChartState extends State<MoodRadialChart> {
   List<RawDataSet> rawDataSets() {
     return [
       RawDataSet(
-        title: 'Fashion',
+        title: 'Gaming',
         color: widget.fashionColor,
         values: [
           300,
@@ -229,7 +229,7 @@ class _MoodRadialChartState extends State<MoodRadialChart> {
         ],
       ),
       RawDataSet(
-        title: 'Art & Tech',
+        title: 'Excercise',
         color: widget.artColor,
         values: [
           250,
@@ -238,7 +238,7 @@ class _MoodRadialChartState extends State<MoodRadialChart> {
         ],
       ),
       RawDataSet(
-        title: 'Entertainment',
+        title: 'Family',
         color: widget.entertainmentColor,
         values: [
           200,
@@ -247,7 +247,7 @@ class _MoodRadialChartState extends State<MoodRadialChart> {
         ],
       ),
       RawDataSet(
-        title: 'Off-road Vehicle',
+        title: 'Friends',
         color: widget.offRoadColor,
         values: [
           150,
@@ -256,7 +256,7 @@ class _MoodRadialChartState extends State<MoodRadialChart> {
         ],
       ),
       RawDataSet(
-        title: 'Boxing',
+        title: 'Movies',
         color: widget.boxingColor,
         values: [
           100,

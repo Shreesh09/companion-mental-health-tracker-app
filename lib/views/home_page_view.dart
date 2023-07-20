@@ -18,9 +18,9 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
-  final String salutation = "Good " +
+  final String salutation = "A very Good " +
       (DateTime.now().hour < 12 ? "Morning" : "Afternoon") +
-      ", User!";
+      "!";
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,7 @@ class _HomePageViewState extends State<HomePageView> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
           systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: Colors.black,
           ),
@@ -48,7 +49,9 @@ class _HomePageViewState extends State<HomePageView> {
                   height: 50,
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(moodTrackerViewRoute);
+                    },
                     child: const Text(
                       "Mood Tracker",
                       style: TextStyle(color: Colors.white),

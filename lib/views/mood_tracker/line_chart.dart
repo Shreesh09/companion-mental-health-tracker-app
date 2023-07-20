@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../resources/app_colors.dart';
+import '../../services/mood_tracker_db/mood_image_contants.dart';
 
 class MoodLineChart extends StatefulWidget {
   const MoodLineChart({super.key});
@@ -67,13 +68,13 @@ class _MoodLineChartState extends State<MoodLineChart> {
     Widget text;
     switch (value.toInt()) {
       case 2:
-        text = const Text('MAR', style: style);
+        text = const Text('MAY', style: style);
         break;
       case 5:
         text = const Text('JUN', style: style);
         break;
       case 8:
-        text = const Text('SEP', style: style);
+        text = const Text('JULY', style: style);
         break;
       default:
         text = const Text('', style: style);
@@ -87,27 +88,27 @@ class _MoodLineChartState extends State<MoodLineChart> {
   }
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
-    const style = TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-      fontSize: 15,
-    );
-    String text;
+    String image;
     switch (value.toInt()) {
-      case 1:
-        text = '10K';
+      case 0:
+        image = sad;
         break;
-      case 3:
-        text = '30k';
+      case 2:
+        image = angry;
         break;
-      case 5:
-        text = '50k';
+      case 4:
+        image = neutral;
+        break;
+      case 6:
+        image = happy;
         break;
       default:
         return Container();
     }
 
-    return Text(text, style: style, textAlign: TextAlign.left);
+    return Image(
+      image: AssetImage(image),
+    );
   }
 
   LineChartData mainData() {
@@ -166,12 +167,12 @@ class _MoodLineChartState extends State<MoodLineChart> {
       lineBarsData: [
         LineChartBarData(
           spots: const [
-            FlSpot(0, 3),
+            FlSpot(0, 4),
             FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
+            FlSpot(4.9, 6),
             FlSpot(6.8, 3.1),
             FlSpot(8, 4),
-            FlSpot(9.5, 3),
+            FlSpot(9.5, 0),
             FlSpot(11, 4),
           ],
           isCurved: true,

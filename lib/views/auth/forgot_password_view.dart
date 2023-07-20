@@ -1,3 +1,6 @@
+import 'package:companionapp/assets/colors/app_colors.dart';
+import 'package:companionapp/assets/gradients/home_page_gradient.dart';
+import 'package:companionapp/assets/widgets/white_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,49 +50,57 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
           }
         }
       },
-      child: Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.black,
+      child: Container(
+        decoration: const BoxDecoration(gradient: homePageGradient),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: appBarColor,
+            iconTheme: const IconThemeData(color: Colors.white),
+            systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: Colors.black,
+            ),
+            title: const WhiteText('Forgot Password'),
           ),
-          title: const Text('Forgot Password'),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                autocorrect: false,
-                autofocus: true,
-                controller: _controller,
-                decoration: const InputDecoration(
-                  hintText: 'Enter you email',
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                TextField(
+                  cursorColor: Colors.white,
+                  style: const TextStyle(color: Colors.white),
+                  keyboardType: TextInputType.emailAddress,
+                  autocorrect: false,
+                  autofocus: true,
+                  controller: _controller,
+                  decoration: const InputDecoration(
+                      hintText: 'Enter you email',
+                      hintStyle: TextStyle(color: Colors.white54)),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      final email = _controller.text;
-                      context
-                          .read<AuthBloc>()
-                          .add(AuthEventForgotPassword(email: email));
-                    },
-                    child: const Text('Reset Password'),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      context.read<AuthBloc>().add(
-                            const AuthEventLogOut(),
-                          );
-                    },
-                    child: const Text('Login here!'),
-                  ),
-                ],
-              )
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        final email = _controller.text;
+                        context
+                            .read<AuthBloc>()
+                            .add(AuthEventForgotPassword(email: email));
+                      },
+                      child: const WhiteText('Reset Password'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.read<AuthBloc>().add(
+                              const AuthEventLogOut(),
+                            );
+                      },
+                      child: const WhiteText('Login here!'),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

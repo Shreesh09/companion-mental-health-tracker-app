@@ -4,11 +4,8 @@ import 'package:companionapp/assets/widgets/white_text_widget.dart';
 import 'package:companionapp/services/mood_tracker_db/firbase_cloud_storage_mood.dart';
 import 'package:companionapp/views/mood_tracker/line_chart.dart';
 import 'package:companionapp/views/mood_tracker/radial_chart.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../../constants/routes.dart';
 import '../../services/auth/auth_service.dart';
 import 'moods_list_view.dart';
 
@@ -36,6 +33,7 @@ class _MoodsViewState extends State<MoodsView> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
           systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: Colors.black,
           ),
