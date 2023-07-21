@@ -1,3 +1,4 @@
+import 'package:companionapp/services/mood_tracker_db/create_mood_dataset.dart';
 import 'package:companionapp/util/extensions/color_extensions.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -218,53 +219,8 @@ class _MoodRadialChartState extends State<MoodRadialChart> {
   }
 
   List<RawDataSet> rawDataSets() {
-    return [
-      RawDataSet(
-        title: 'Gaming',
-        color: widget.fashionColor,
-        values: [
-          300,
-          50,
-          250,
-        ],
-      ),
-      RawDataSet(
-        title: 'Excercise',
-        color: widget.artColor,
-        values: [
-          250,
-          100,
-          200,
-        ],
-      ),
-      RawDataSet(
-        title: 'Family',
-        color: widget.entertainmentColor,
-        values: [
-          200,
-          150,
-          50,
-        ],
-      ),
-      RawDataSet(
-        title: 'Friends',
-        color: widget.offRoadColor,
-        values: [
-          150,
-          200,
-          150,
-        ],
-      ),
-      RawDataSet(
-        title: 'Movies',
-        color: widget.boxingColor,
-        values: [
-          100,
-          250,
-          100,
-        ],
-      ),
-    ];
+    //print(CreateMoodDataset().getActivityData()[0].values);
+    return CreateMoodDataset().getActivityData();
   }
 }
 

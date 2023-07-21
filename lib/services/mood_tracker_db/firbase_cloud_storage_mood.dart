@@ -18,13 +18,13 @@ class FirebaseMoodCloudStorage {
       required String mood,
       required String activity}) async {
     DateTime now = DateTime.now();
-    DateTime date =
-        DateTime(now.year, now.month, now.day, now.hour, now.minute);
+    DateTime date = DateTime(
+        now.year, now.month, now.day, now.hour, now.minute, now.second);
     final document = await moods.add({
       moodFieldName: mood,
       activityFieldName: activity,
       ownerUserIDFieldName: ownerUserId,
-      dateMoodFieldName: date.toString().substring(0, 16),
+      dateMoodFieldName: date.toString().substring(0, 18),
     });
     final fetchedNote = await document.get();
     return CloudMood(
@@ -32,7 +32,7 @@ class FirebaseMoodCloudStorage {
       ownerUserId: ownerUserId,
       mood: fetchedNote.data()![moodFieldName],
       activity: fetchedNote.data()![activityFieldName],
-      date: date.toString().substring(0, 16),
+      date: date.toString().substring(0, 18),
     );
   }
 

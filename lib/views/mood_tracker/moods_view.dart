@@ -1,6 +1,7 @@
 import 'package:companionapp/assets/colors/app_colors.dart';
 import 'package:companionapp/assets/gradients/home_page_gradient.dart';
 import 'package:companionapp/assets/widgets/white_text_widget.dart';
+import 'package:companionapp/services/mood_tracker_db/create_mood_dataset.dart';
 import 'package:companionapp/services/mood_tracker_db/firbase_cloud_storage_mood.dart';
 import 'package:companionapp/views/mood_tracker/line_chart.dart';
 import 'package:companionapp/views/mood_tracker/radial_chart.dart';
@@ -52,7 +53,9 @@ class _MoodsViewState extends State<MoodsView> {
                 if (snapshot.hasData) {
                   final allMoods = snapshot.data!.toList();
                   allMoods.sort((a, b) => b.date.compareTo(a.date));
-                  //if()
+
+                  CreateMoodDataset().setMoods(allMoods);
+
                   return ListView(
                     scrollDirection: Axis.vertical,
                     children: [
@@ -61,8 +64,7 @@ class _MoodsViewState extends State<MoodsView> {
                           Container(
                               color: Colors.black45, child: MoodRadialChart()),
                           Container(
-                              color: Colors.black45,
-                              child: const MoodLineChart()),
+                              color: Colors.black45, child: MoodLineChart()),
                           SizedBox(
                             height: 80,
                             child: Container(

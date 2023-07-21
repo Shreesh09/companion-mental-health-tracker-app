@@ -1,23 +1,18 @@
+import 'package:companionapp/services/mood_tracker_db/create_mood_dataset.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../resources/app_colors.dart';
 import '../../services/mood_tracker_db/mood_image_contants.dart';
 
-class MoodLineChart extends StatefulWidget {
-  const MoodLineChart({super.key});
+class MoodLineChart extends StatelessWidget {
+  MoodLineChart({super.key});
 
-  @override
-  State<MoodLineChart> createState() => _MoodLineChartState();
-}
-
-class _MoodLineChartState extends State<MoodLineChart> {
-  List<Color> gradientColors = [
+  final List<FlSpot> moods = CreateMoodDataset().getMoodData();
+  final List<Color> gradientColors = [
     AppColors.contentColorCyan,
     AppColors.contentColorBlue,
   ];
-
-  bool showAvg = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +28,7 @@ class _MoodLineChartState extends State<MoodLineChart> {
               bottom: 12,
             ),
             child: LineChart(
-              showAvg ? avgData() : mainData(),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: TextButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Text(
-              'avg',
-              style: TextStyle(
-                fontSize: 12,
-                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
-              ),
+              mainData(),
             ),
           ),
         ),
@@ -67,15 +44,31 @@ class _MoodLineChartState extends State<MoodLineChart> {
     );
     Widget text;
     switch (value.toInt()) {
-      case 2:
-        text = const Text('MAY', style: style);
+      case 0:
+        text = const Text('12 AM', style: style);
         break;
-      case 5:
-        text = const Text('JUN', style: style);
+      case 2:
+        text = const Text('4 AM', style: style);
+        break;
+      case 4:
+        text = const Text('8 AM', style: style);
+        break;
+      case 6:
+        text = const Text('12 PM', style: style);
         break;
       case 8:
-        text = const Text('JULY', style: style);
+        text = const Text('4 PM', style: style);
         break;
+      case 10:
+        text = const Text(
+          '8 PM',
+          style: style,
+        );
+        break;
+      //case 12:
+      // text = const Text('12 AM', style: style);
+      // break;
+
       default:
         text = const Text('', style: style);
         break;
@@ -90,16 +83,16 @@ class _MoodLineChartState extends State<MoodLineChart> {
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     String image;
     switch (value.toInt()) {
-      case 0:
+      case 1:
         image = sad;
         break;
-      case 2:
+      case 3:
         image = angry;
         break;
-      case 4:
+      case 5:
         image = neutral;
         break;
-      case 6:
+      case 7:
         image = happy;
         break;
       default:
@@ -161,21 +154,14 @@ class _MoodLineChartState extends State<MoodLineChart> {
         border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
-      maxX: 11,
+      maxX: 12,
       minY: 0,
-      maxY: 6,
+      maxY: 8,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 4),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 6),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 0),
-            FlSpot(11, 4),
-          ],
+          spots: moods,
           isCurved: true,
+          preventCurveOverShooting: true,
           gradient: LinearGradient(
             colors: gradientColors,
           ),
@@ -190,103 +176,6 @@ class _MoodLineChartState extends State<MoodLineChart> {
               colors: gradientColors
                   .map((color) => color.withOpacity(0.3))
                   .toList(),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  LineChartData avgData() {
-    return LineChartData(
-      lineTouchData: const LineTouchData(enabled: false),
-      gridData: FlGridData(
-        show: true,
-        drawHorizontalLine: true,
-        verticalInterval: 1,
-        horizontalInterval: 1,
-        getDrawingVerticalLine: (value) {
-          return const FlLine(
-            color: Color(0xff37434d),
-            strokeWidth: 1,
-          );
-        },
-        getDrawingHorizontalLine: (value) {
-          return const FlLine(
-            color: Color(0xff37434d),
-            strokeWidth: 1,
-          );
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            reservedSize: 30,
-            getTitlesWidget: bottomTitleWidgets,
-            interval: 1,
-          ),
-        ),
-        leftTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            getTitlesWidget: leftTitleWidgets,
-            reservedSize: 42,
-            interval: 1,
-          ),
-        ),
-        topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-      ),
-      borderData: FlBorderData(
-        show: true,
-        border: Border.all(color: const Color(0xff37434d)),
-      ),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
-      lineBarsData: [
-        LineChartBarData(
-          spots: const [
-            FlSpot(0, 3.44),
-            FlSpot(2.6, 3.44),
-            FlSpot(4.9, 3.44),
-            FlSpot(6.8, 3.44),
-            FlSpot(8, 3.44),
-            FlSpot(9.5, 3.44),
-            FlSpot(11, 3.44),
-          ],
-          isCurved: true,
-          gradient: LinearGradient(
-            colors: [
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
-            ],
-          ),
-          barWidth: 5,
-          isStrokeCapRound: true,
-          dotData: const FlDotData(
-            show: false,
-          ),
-          belowBarData: BarAreaData(
-            show: true,
-            gradient: LinearGradient(
-              colors: [
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-              ],
             ),
           ),
         ),
