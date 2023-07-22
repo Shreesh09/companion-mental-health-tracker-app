@@ -208,6 +208,23 @@ class _MoodTrackerState extends State<MoodTracker> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           )),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    SizedBox(
+                      height: 100,
+                      child: GestureDetector(
+                        child: const Center(
+                            child: Text(
+                          "^\nSwipe up to view Logs",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white54, fontSize: 18),
+                        )),
+                        onVerticalDragUpdate: (dragUpdateDetails) {
+                          Navigator.of(context).pushNamed(moodsViewRoute);
+                        },
+                      ),
                     )
                   ]),
                 ),

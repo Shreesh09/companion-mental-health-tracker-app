@@ -1,6 +1,5 @@
 import 'package:companionapp/helpers/extract_name_asset.dart';
 import 'package:companionapp/services/mood_tracker_db/cloud_mood.dart';
-import 'package:companionapp/util/extensions/color_extensions.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 

@@ -44,6 +44,7 @@ dependencies:
   equatable: ^2.0.5
   share_plus: ^7.0.2
   fl_chart: ^0.63.0
+  assets_audio_player: ^3.0.6
 
 dev_dependencies:
   flutter_test:
@@ -87,6 +88,7 @@ flutter:
     - assets/relax.png
     - assets/shop.png
     - assets/sports.png
+    - assets/sound/relax.mp3
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
