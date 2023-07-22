@@ -1,5 +1,6 @@
 import 'package:companionapp/services/auth/bloc/auth_bloc.dart';
 import 'package:companionapp/services/auth/bloc/auth_event.dart';
+import 'package:companionapp/utilities/dialogs/logout_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -69,136 +70,141 @@ class _HomePageViewState extends State<HomePageView> {
                     child: const Text("Meditation",
                         style: TextStyle(color: Colors.white))),
                 TextButton(
-                    onPressed: () {
-                      context.read<AuthBloc>().add(const AuthEventLogOut());
+                    onPressed: () async {
+                      bool shouldLogOut = await showLogOutDialog(context);
+                      if (shouldLogOut) {
+                        context.read<AuthBloc>().add(const AuthEventLogOut());
+                      }
                     },
                     child: const Text("Log Out",
                         style: TextStyle(color: Colors.white))),
               ],
             )),
-        body: Column(children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 30, 0, 15),
-            child: Center(
-              child: WhiteText(
-                salutation,
-                fontSize: 32,
+        body: SingleChildScrollView(
+          child: Column(children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 30, 0, 15),
+              child: Center(
+                child: WhiteText(
+                  salutation,
+                  fontSize: 32,
+                ),
               ),
             ),
-          ),
-          const BasicBox(
-            width: 440,
-            //height: 200,
-            content: Center(
-                child: Image(
-              image: AssetImage(
-                'assets/inspirational.png',
-              ),
-            )),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const WhiteText(
-                  "how are you feeling?",
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+            BasicBox(
+              width: MediaQuery.of(context).size.width * .9,
+              //height: 200,
+              content: const Center(
+                  child: Image(
+                image: AssetImage(
+                  'assets/inspirational.png',
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(moodTrackerViewRoute);
-                  },
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 100,
-                    child: Center(
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const SizedBox(
-                          height: 70,
-                          width: 70,
-                          child: Image(
-                            image: AssetImage("assets/happy.png"),
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 70,
-                          width: 70,
-                          child: Image(
-                            image: AssetImage("assets/neutral.png"),
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 70,
-                          width: 70,
-                          child: Image(
-                            image: AssetImage("assets/sad.png"),
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    )),
+              )),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const WhiteText(
+                    "how are you feeling?",
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    const WhiteText(
-                      "Journal",
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(moodTrackerViewRoute);
+                    },
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: 100,
+                      child: const Center(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            height: 70,
+                            width: 70,
+                            child: Image(
+                              image: AssetImage("assets/happy.png"),
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 70,
+                            width: 70,
+                            child: Image(
+                              image: AssetImage("assets/neutral.png"),
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 70,
+                            width: 70,
+                            child: Image(
+                              image: AssetImage("assets/sad.png"),
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      )),
                     ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(journalViewRoute);
-                      },
-                      child: const BasicBox(
-                          width: 200,
-                          height: 200,
-                          content: Image(
-                            image: AssetImage("assets/journal.png"),
-                            color: Colors.white,
-                          )),
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    const WhiteText(
-                      "Meditate",
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(meditateViewRoute);
-                      },
-                      child: const BasicBox(
-                          width: 200,
-                          height: 200,
-                          content: Image(
-                            image: AssetImage("assets/meditation.png"),
-                            color: Colors.white,
-                          )),
-                    )
-                  ],
-                )
-              ],
+                  ),
+                ],
+              ),
             ),
-          )
-        ]),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      const WhiteText(
+                        "Journal",
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(journalViewRoute);
+                        },
+                        child: BasicBox(
+                            width: MediaQuery.of(context).size.width * .40,
+                            height: MediaQuery.of(context).size.width * .40,
+                            content: const Image(
+                              image: AssetImage("assets/journal.png"),
+                              color: Colors.white,
+                            )),
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      const WhiteText(
+                        "Meditate",
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(meditateViewRoute);
+                        },
+                        child: BasicBox(
+                            width: MediaQuery.of(context).size.width * .40,
+                            height: MediaQuery.of(context).size.width * .40,
+                            content: const Image(
+                              image: AssetImage("assets/meditation.png"),
+                              color: Colors.white,
+                            )),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ]),
+        ),
       ),
     );
   }

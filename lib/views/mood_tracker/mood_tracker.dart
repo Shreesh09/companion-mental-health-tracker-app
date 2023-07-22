@@ -91,7 +91,7 @@ class _MoodTrackerState extends State<MoodTracker> {
                     ),
                   ],
                 ),
-                body: Center(
+                body: SingleChildScrollView(
                   child: Column(children: [
                     const SizedBox(
                       height: 100,
