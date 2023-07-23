@@ -26,21 +26,15 @@ class _HomePageViewState extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(gradient: homePageGradient),
+      decoration: BoxDecoration(gradient: homePageGradient),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.white),
-          systemOverlayStyle: const SystemUiOverlayStyle(
+          title: const WhiteText('Companion'),
+          backgroundColor: appBarColor,
+          systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.black,
           ),
-          title: const Text(
-            'Companion',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          backgroundColor: appBarColor, //Color.fromARGB(94, 79, 78, 93),
         ),
         drawer: Drawer(
             backgroundColor: widgetColor,
