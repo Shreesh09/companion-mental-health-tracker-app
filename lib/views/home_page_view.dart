@@ -30,9 +30,10 @@ class _HomePageViewState extends State<HomePageView> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
           title: const WhiteText('Companion'),
           backgroundColor: appBarColor,
-          systemOverlayStyle: SystemUiOverlayStyle(
+          systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: Colors.black,
           ),
         ),
